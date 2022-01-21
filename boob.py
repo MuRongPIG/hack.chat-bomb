@@ -7,9 +7,9 @@ import websocket
 from websocket import WebSocketConnectionClosedException,WebSocketBadStatusException
 from ssl import SSLCertVerificationError, SSLEOFError
 from python_socks import ProxyConnectionError,ProxyTimeoutError,ProxyError
-channel = 'test'
-nick = ['someone']
-test_mode = True 
+channel = 'test' #输入对象所在的频道
+nick = ['someone'] #输入你想轰炸的对象,留空则炸服务器
+test_mode = False
 
 def change_color():
     colors = ['red','yellow','blue','green','white','black','pink','purple','grey','cyan','camel','beige']
