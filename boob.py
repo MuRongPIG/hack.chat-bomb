@@ -30,9 +30,9 @@ data = '{"types":[],"levels":[],"countries":[],"type":"json","resultModel":"Mini
 
 response = requests.post('https://public.freeproxyapi.com/api/Download/Json', headers=headers, data=data)
 
-channel = 'justatest'
-nick = ['mrz']
-test_mode = False
+channel = ''
+nick = ['']
+test_mode = True
 
 def change_color():
     colors = ['red','yellow','blue','green','white','black','pink','purple','grey','cyan','camel','beige']
