@@ -1,6 +1,4 @@
 import json
-import traceback
-from aiohttp import http
 import requests
 import time
 import random
@@ -9,30 +7,30 @@ import websocket
 from websocket import WebSocketConnectionClosedException,WebSocketBadStatusException
 from ssl import SSLCertVerificationError, SSLEOFError
 from python_socks import ProxyConnectionError,ProxyTimeoutError,ProxyError
-headers = {
-    'authority': 'public.freeproxyapi.com',
-    'sec-ch-ua': '" Not A;Brand";v="99", "Chromium";v="96", "Microsoft Edge";v="96"',
-    'accept': 'application/octet-stream',
-    'dnt': '1',
-    'content-type': 'application/json',
-    'sec-ch-ua-mobile': '?0',
-    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36 Edg/96.0.1054.62',
-    'sec-ch-ua-platform': '"Windows"',
-    'origin': 'https://freeproxyapi.com',
-    'sec-fetch-site': 'same-site',
-    'sec-fetch-mode': 'cors',
-    'sec-fetch-dest': 'empty',
-    'referer': 'https://freeproxyapi.com/',
-    'accept-language': 'zh-CN,zh;q=0.9',
-}
+# headers = {
+#     'authority': 'public.freeproxyapi.com',
+#     'sec-ch-ua': '" Not A;Brand";v="99", "Chromium";v="96", "Microsoft Edge";v="96"',
+#     'accept': 'application/octet-stream',
+#     'dnt': '1',
+#     'content-type': 'application/json',
+#     'sec-ch-ua-mobile': '?0',
+#     'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36 Edg/96.0.1054.62',
+#     'sec-ch-ua-platform': '"Windows"',
+#     'origin': 'https://freeproxyapi.com',
+#     'sec-fetch-site': 'same-site',
+#     'sec-fetch-mode': 'cors',
+#     'sec-fetch-dest': 'empty',
+#     'referer': 'https://freeproxyapi.com/',
+#     'accept-language': 'zh-CN,zh;q=0.9',
+# }
 
-data = '{"types":[],"levels":[],"countries":[],"type":"json","resultModel":"Mini"}'
+# data = '{"types":[],"levels":[],"countries":[],"type":"json","resultModel":"Mini"}'
 
-response = requests.post('https://public.freeproxyapi.com/api/Download/Json', headers=headers, data=data)
+# response = requests.post('https://public.freeproxyapi.com/api/Download/Json', headers=headers, data=data)
 
-channel = ''
+channel = 'your'
 nick = ['']
-test_mode = True
+test_mode = False
 
 def change_color():
     colors = ['red','yellow','blue','green','white','black','pink','purple','grey','cyan','camel','beige']
@@ -53,7 +51,7 @@ def fuck():
         try:
             ip = proxy_list.pop()
             ws = websocket.WebSocket()
-            ws.connect('ws://146.56.135.157:6060',
+            ws.connect('wss://hack.chat/chat-ws',
                 http_proxy_host=ip.split(':')[0], 
                 http_proxy_port=ip.split(':')[1], 
                 proxy_type=getDictKey_1(proxy_dict,ip))
@@ -62,23 +60,23 @@ def fuck():
             ws.send(req)
             time.sleep(0.5)
             ws.send(json.dumps({ 'cmd': 'changecolor', 'color': ''.join(random.sample(['0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f'],6))}))
-            while True:
-                if nick != ['']:
-                    ws.send(json.dumps({'cmd': 'whisper', 'nick': random.choice(nick), "text": 
-                    random.choices([
-                                '$$\Huge\color{green}\colorbox{red}{傻}\Huge\color{red}\colorbox{green}{逼}\Huge\color{green}\colorbox{red}{傻}\Huge\color{red}\colorbox{green}{逼}$$',
-                                '$$\Huge\color{red}\colorbox{green}{█▌▐█▌ ▐▀▀▄ ▄█▀▀█ ██▪ █▌▐█▌██ ▄▄▐▀▀▄█▌▐█▌ ▐▀▀▄ ▄█▀▀█ ██▪ █▌▐█▌██ ▄▄▐▀▀▄█▌▐█▌ ▐▀▀▄ ▄█▀▀█ ██▪ █▌▐█▌██ ▄▄▐▀▀▄█▌▐█▌ ▐▀▀▄ }$$',
-                                '$$\Huge\color{red}\colorbox{green}{°▽°}\Huge\color{green}\colorbox{red}{°O°}\Huge\color{red}\colorbox{green}{°▽°}\Huge\color{green}\colorbox{red}{°O°}$$',
-                                ],weights=[0,1,0])[0]}))
-                    time.sleep(5)
-                else:
-                    ws.send(json.dumps({'cmd': 'chat', "text": 
-                    random.choices([
-                                '$$\Huge\color{green}\colorbox{red}{傻}\Huge\color{red}\colorbox{green}{逼}\Huge\color{green}\colorbox{red}{傻}\Huge\color{red}\colorbox{green}{逼}$$',
-                                '$$\Huge\color{red}\colorbox{green}{█▌▐█▌ ▐▀▀▄ ▄█▀▀█ ██▪ █▌▐█▌██ ▄▄▐▀▀▄█▌▐█▌ ▐▀▀▄ ▄█▀▀█ ██▪ █▌▐█▌██ ▄▄▐▀▀▄█▌▐█▌ ▐▀▀▄ ▄█▀▀█ ██▪ █▌▐█▌██ ▄▄▐▀▀▄█▌▐█▌ ▐▀▀▄ }$$',
-                                '$$\Huge\color{red}\colorbox{green}{°▽°}\Huge\color{green}\colorbox{red}{°O°}\Huge\color{red}\colorbox{green}{°▽°}\Huge\color{green}\colorbox{red}{°O°}$$',
-                                ],weights=[0,1,0])[0]}))
-                    time.sleep(5)
+            # while True:
+            #     if nick != ['']:
+            #         ws.send(json.dumps({'cmd': 'whisper', 'nick': random.choice(nick), "text": 
+            #         random.choices([
+            #                     '$$\Huge\color{green}\colorbox{red}{傻}\Huge\color{red}\colorbox{green}{逼}\Huge\color{green}\colorbox{red}{傻}\Huge\color{red}\colorbox{green}{逼}$$',
+            #                     '$$\Huge\color{red}\colorbox{green}{█▌▐█▌ ▐▀▀▄ ▄█▀▀█ ██▪ █▌▐█▌██ ▄▄▐▀▀▄█▌▐█▌ ▐▀▀▄ ▄█▀▀█ ██▪ █▌▐█▌██ ▄▄▐▀▀▄█▌▐█▌ ▐▀▀▄ ▄█▀▀█ ██▪ █▌▐█▌██ ▄▄▐▀▀▄█▌▐█▌ ▐▀▀▄ }$$',
+            #                     '$$\Huge\color{red}\colorbox{green}{°▽°}\Huge\color{green}\colorbox{red}{°O°}\Huge\color{red}\colorbox{green}{°▽°}\Huge\color{green}\colorbox{red}{°O°}$$',
+            #                     ],weights=[0,1,0])[0]}))
+            #         time.sleep(5)
+            #     else:
+            #         ws.send(json.dumps({'cmd': 'chat', "text": 
+            #         random.choices([
+            #                     '$$\Huge\color{green}\colorbox{red}{傻}\Huge\color{red}\colorbox{green}{逼}\Huge\color{green}\colorbox{red}{傻}\Huge\color{red}\colorbox{green}{逼}$$',
+            #                     '$$\Huge\color{red}\colorbox{green}{█▌▐█▌ ▐▀▀▄ ▄█▀▀█ ██▪ █▌▐█▌██ ▄▄▐▀▀▄█▌▐█▌ ▐▀▀▄ ▄█▀▀█ ██▪ █▌▐█▌██ ▄▄▐▀▀▄█▌▐█▌ ▐▀▀▄ ▄█▀▀█ ██▪ █▌▐█▌██ ▄▄▐▀▀▄█▌▐█▌ ▐▀▀▄ }$$',
+            #                     '$$\Huge\color{red}\colorbox{green}{°▽°}\Huge\color{green}\colorbox{red}{°O°}\Huge\color{red}\colorbox{green}{°▽°}\Huge\color{green}\colorbox{red}{°O°}$$',
+            #                     ],weights=[0,1,0])[0]}))
+            #         time.sleep(5)
         except (ProxyConnectionError,ProxyTimeoutError,ProxyError,SSLEOFError,SSLCertVerificationError,ValueError,WebSocketBadStatusException,WebSocketConnectionClosedException,ConnectionResetError,ConnectionRefusedError):
             i = 0
             return
@@ -103,25 +101,28 @@ def main():
     proxy_lst = []
     lst = []
 
-    def getproxy():
-        d = {'Socks4':[],'Socks5':[],'Https':[]}
-        response = json.loads(requests.post('https://public.freeproxyapi.com/api/Download/Json', headers=headers, data=data).text)
-        for w in response:
-            if w['Type'] in ['Socks4','Socks5','Https']:
-                proxyip = w['Host'] + ':' + str(w['Port'])
-                d[w['Type']].append(proxyip)
-        return d
+    # def getproxy():
+    #     d = {'Socks4':[],'Socks5':[],'Https':[]}
+    #     response = json.loads(requests.post('https://public.freeproxyapi.com/api/Download/Json', headers=headers, data=data).text)
+    #     for w in response:
+    #         if w['Type'] in ['Socks4','Socks5','Https']:
+    #             proxyip = w['Host'] + ':' + str(w['Port'])
+    #             d[w['Type']].append(proxyip)
+    #     return d
         
-    m = getproxy()
+    # m = getproxy()
     socks4_list1 = requests.get('https://api.proxyscrape.com/v2/?request=displayproxies&protocol=socks4&timeout=10000&country=all&ssl=all&anonymity=all').text.split('\r\n')
     socks4_list2 = requests.get('https://www.proxyscan.io/download?type=socks4').text.split('\n')
     socks4_list3 = requests.get('https://www.proxy-list.download/api/v1/get?type=socks4').text.split('\r\n')
-    socks4_list4 = requests.get('https://raw.githubusercontent.com/TheSpeedX/SOCKS-List/master/socks4.txt').text.split('\n')
-#     socks4_list5 = requests.get('https://raw.githubusercontent.com/jetkai/proxy-list/main/online-proxies/txt/proxies.txt').text.split('\n')
+    socks4_list4 = requests.get('https://raw.githubusercontent.com/TheSpeedX/SOCKS-List/master/socks4.txt').text.split('\n')     
+    socks4_list5 = requests.get('https://raw.githubusercontent.com/jetkai/proxy-list/main/online-proxies/txt/proxies.txt').text.split('\n')
     socks4_list6 = requests.get('https://raw.githubusercontent.com/roosterkid/openproxylist/main/SOCKS4_RAW.txt').text.split('\n')
     socks4_list7 = requests.get('https://raw.githubusercontent.com/monosans/proxy-list/main/proxies/socks4.txt').text.split('\n')
-    socks4_list8 = m['Socks4']
-    socks4_list = list(set(socks4_list1 + socks4_list2 + socks4_list3 + socks4_list4 + socks4_list6 + socks4_list7 + socks4_list8))
+    socks4_list8 = requests.get('https://raw.githubusercontent.com/ShiftyTR/Proxy-List/master/socks4.txt').text.split('\n')
+    socks4_list9 = requests.get('https://raw.githubusercontent.com/mmpx12/proxy-list/master/socks4.txt').text.split('\r\n')
+    socks4_list10 = requests.get('https://raw.githubusercontent.com/rdavydov/proxy-list/main/proxies/socks4.txt').text.split('\n')
+    socks4_list11 = requests.get('https://raw.githubusercontent.com/RX4096/proxy-list/main/online/socks4.txt').text.split('\n')
+    socks4_list = list(set(socks4_list1 + socks4_list2 + socks4_list3 + socks4_list4 + socks4_list5 + socks4_list6 + socks4_list7 + socks4_list8 + socks4_list9 + socks4_list10 + socks4_list11))
     print(len(socks4_list))
 
     socks5_list1 = requests.get('https://api.proxyscrape.com/v2/?request=displayproxies&protocol=socks5&timeout=10000&country=all&ssl=all&anonymity=all').text.split('\r\n')
@@ -131,8 +132,13 @@ def main():
     socks5_list5 = requests.get('https://raw.githubusercontent.com/jetkai/proxy-list/main/online-proxies/txt/proxies-socks5.txt').text.split('\n')
     socks5_list6 = requests.get('https://raw.githubusercontent.com/roosterkid/openproxylist/main/SOCKS5_RAW.txt').text.split('\n')
     socks5_list7 = requests.get('https://raw.githubusercontent.com/monosans/proxy-list/main/proxies/socks5.txt').text.split('\n')
-    socks5_list8 = m['Socks5']
-    socks5_list = list(set(socks5_list1 + socks5_list2 + socks5_list3 + socks5_list4 + socks5_list5 + socks5_list6 + socks5_list7 + socks5_list8))
+    socks5_list8 = requests.get('https://raw.githubusercontent.com/hookzof/socks5_list/master/proxy.txt').text.split('r\n')
+    socks5_list9 = requests.get('https://raw.githubusercontent.com/ShiftyTR/Proxy-List/master/socks5.txt').text.split('\n')
+    socks5_list10 = requests.get('https://raw.githubusercontent.com/mmpx12/proxy-list/master/socks5.txt').text.split('\r\n')
+    socks5_list11 = requests.get('https://raw.githubusercontent.com/rdavydov/proxy-list/main/proxies/socks5.txt').text.split('\n')
+    socks5_list12 = requests.get('https://raw.githubusercontent.com/ryanhaticus/superiorproxy.com/main/proxies.txt').text.split('\n')
+    socks5_list13 = requests.get('https://raw.githubusercontent.com/RX4096/proxy-list/main/online/socks5.txt').text.split('\n')
+    socks5_list = list(set(socks5_list1 + socks5_list2 + socks5_list3 + socks5_list4 + socks5_list5 + socks5_list6 + socks5_list7 + socks5_list8 + socks5_list9 + socks5_list10 + socks5_list11 + socks5_list12 + socks5_list13))
     print(len(socks5_list))
 
 #     https_list1 = requests.get('https://api.proxyscrape.com/v2/?request=displayproxies&protocol=https&timeout=10000&country=all&ssl=all&anonymity=all').text.split('\r\n')
